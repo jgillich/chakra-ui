@@ -2,6 +2,8 @@ import * as CSS from "csstype"
 import { Config, createParser, PropConfig, system } from "../core"
 import { getIsRtl } from "../utils/directionality"
 import { Length, ResponsiveValue } from "../utils/types"
+import { PropsPath } from "../utils.types"
+import { ChakraTheme } from ".."
 
 const floatTransform: PropConfig["transform"] = (value, _, props = {}) => {
   const map = { left: "right", right: "left" }
@@ -57,7 +59,7 @@ const config: Config = {
   },
 }
 
-export interface OtherProps {
+export interface OtherProps<Theme extends ChakraTheme = ChakraTheme> {
   /**
    * The CSS `animation` property
    */
@@ -93,7 +95,9 @@ export interface OtherProps {
   /**
    * The CSS `object-psition` property
    */
-  objectPosition?: ResponsiveValue<CSS.Property.ObjectPosition<Length>>
+  objectPosition?: ResponsiveValue<
+    CSS.Property.ObjectPosition<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `float` property
    */
