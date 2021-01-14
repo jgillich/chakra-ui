@@ -74,11 +74,11 @@ export interface FlexboxProps {
   /**
    * The CSS `flex-grow` property
    */
-  flexGrow?: Token<CSS.Property.FlexGrow>
+  flexGrow?: Token<CSS.Property.FlexGrow | (string & number)>
   /**
    * The CSS `flex-shrink` property
    */
-  flexShrink?: Token<CSS.Property.FlexShrink>
+  flexShrink?: Token<CSS.Property.FlexShrink | (string & number)>
 }
 
 export const flexbox = system(config)
